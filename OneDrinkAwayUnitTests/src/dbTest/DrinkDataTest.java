@@ -29,7 +29,7 @@ public class DrinkDataTest {
         try {
             InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
             InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
-            dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+            dd = DrinkData.getDrinkData();
         } catch (Exception e) {
             e.printStackTrace();
         }
