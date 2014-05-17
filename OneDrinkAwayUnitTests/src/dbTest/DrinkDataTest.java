@@ -13,7 +13,6 @@ import org.junit.Test;
 import com.onedrinkaway.common.Drink;
 import com.onedrinkaway.common.DrinkInfo;
 import com.onedrinkaway.db.DrinkData;
-import commonTest.DrinkTest;
 
 
 public class DrinkDataTest {
@@ -26,13 +25,7 @@ public class DrinkDataTest {
 
     @Before
     public void setUp() throws Exception {
-        try {
-            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
-            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
-            dd = DrinkData.getDrinkData();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     @After
@@ -40,24 +33,66 @@ public class DrinkDataTest {
     	
     }
     
-    /*
     @Test
-    public void testDrinks() {
-        Set<Drink> drinks = dd.getAllDrinks();
-        for (Drink d : drinks) {
-            assertTrue(d != null);
-            DrinkTest.testDrinkFields(d);
-        }
+    public void testConstructor() {
+    	
     }
-    */
     
     @Test
-    public void testDrinkInfo() {
-        Set<Drink> drinks = dd.getAllDrinks();
-        for (Drink d : drinks) {
-            DrinkInfo di = dd.getDrinkInfo(d);
-            assertTrue(di != null);
-        }
+    public void testGetDrink() {
+    	
     }
+    
+    @Test
+    public void testGetDrinkInfo() {
+    	
+    }
+    
+    @Test
+    public void testGetIngredients() {
+    	
+    }
+    
+    @Test
+    public void testAddRating() {
+    	
+    }
+    
+    @Test
+    public void testAddFavorite() {
+    	
+    }
+    
+    @Test
+    public void testGetCategories() {
+    	
+    }
+    
+    @Test
+    public void testGetAllDrinks() {
+    	
+    }
+    
+    @Test
+    public void testGetDrinkNames() {
+    	
+    }
+    
+    @Test
+    public void testGetRatedDrinks() {
+    	
+    }
+    
+    @Test
+    public void testGetFavorites() {
+    	
+    }
+    
+    @Test
+    public void testRemoveFavorite() {
+    	
+    }
+    
+    
 
 }
