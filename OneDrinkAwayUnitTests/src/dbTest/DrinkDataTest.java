@@ -59,12 +59,6 @@ public class DrinkDataTest {
     }
     
     @Test
-    public void testConstructor2() {
-    	DrinkData d = DrinkData.getDrinkData();
-    	assertTrue(true);
-    }
-    
-    @Test
     public void testAddFavorite() {
     	
     }
