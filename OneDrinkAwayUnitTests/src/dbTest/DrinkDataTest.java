@@ -37,8 +37,10 @@ public class DrinkDataTest {
 
     @After
     public void tearDown() throws Exception {
+    	
     }
-
+    
+    /*
     @Test
     public void testDrinks() {
         Set<Drink> drinks = dd.getAllDrinks();
@@ -47,6 +49,7 @@ public class DrinkDataTest {
             DrinkTest.testDrinkFields(d);
         }
     }
+    */
     
     @Test
     public void testDrinkInfo() {
