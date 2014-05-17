@@ -27,42 +27,10 @@ public class DrinkDbTest {
     public void tearDown() throws Exception {
     	
     }
-    
-    /*
+
     @Test
     public void test() {
-        fail("Not yet implemented");
+    	
     }
-    */
-    
-    @Test
-    public void testAddRatingWithWrongRatingThrowException() {
-		for(int i = -10; i <= 10; i++) {
-			if(i < 1 || i > 5) {
-				boolean hasException = false;
-				try {
-					DrinkDb.addRating(drink, i);
-				} catch(Exception e) {
-					hasException = true;
-				}
-				assertTrue(hasException);
-			}			
-		}
-	}
-    
-    @Test
-    public void testAddRatingWithWrongRatingThrowException2() {
-		for(int i = -10; i <= 10; i++) {
-			if(i < 1 || i > 5) {
-				boolean hasException = false;
-				try {
-					DrinkDb.addRating(drink, i);
-				} catch(Exception e) {
-					hasException = true;
-				}
-				assertTrue(hasException);
-			}			
-		}
-	}
 
 }
