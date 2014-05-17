@@ -34,25 +34,25 @@ public class DrinkTest {
     }
     
     @Test
-    public void testAddUserRating() {
+    public void testGetUserRateAndAddUserRateAreSame() {
     	d.addUserRating(1);
-    	assertTrue(d.getRating() == 1);
+    	assertTrue(d.getUserRating() == 1);
     	
     	d.addUserRating(2);
-    	assertFalse(d.getRating() == 1);
-    	assertTrue(d.getRating() == 2);
+    	assertFalse(d.getUserRating() == 1);
+    	assertTrue(d.getUserRating() == 2);
     	
     	d.addUserRating(3);
-    	assertFalse(d.getRating() == 2);
-    	assertTrue(d.getRating() == 3);
+    	assertFalse(d.getUserRating() == 2);
+    	assertTrue(d.getUserRating() == 3);
     	
     	d.addUserRating(4);
-    	assertFalse(d.getRating() == 3);
-    	assertTrue(d.getRating() == 4);
+    	assertFalse(d.getUserRating() == 3);
+    	assertTrue(d.getUserRating() == 4);
     	
     	d.addUserRating(5);
-    	assertFalse(d.getRating() == 4);
-    	assertTrue(d.getRating() == 5);
+    	assertFalse(d.getUserRating() == 4);
+    	assertTrue(d.getUserRating() == 5);
     }
 
     /**
@@ -66,26 +66,4 @@ public class DrinkTest {
         assertTrue(d.glass.equals("glass"));
         assertTrue(d.getUserRating() == -1);
     }
-    
-    @Test
-    public void testGetAvgRating() {
-    	
-    }
-    
-    
-
-	@Test
-	public void testGetRateAndSetRateAreSame() {
-		
-	}
-
-	@Test
-	public void testGetAttributesReturnValue() {
-		
-	}
-	//</test Drink>
-    
-    
-    
-    
 }
