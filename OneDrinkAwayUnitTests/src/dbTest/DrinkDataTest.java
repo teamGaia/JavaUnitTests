@@ -4,14 +4,11 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.onedrinkaway.common.Drink;
-import com.onedrinkaway.common.DrinkInfo;
 import com.onedrinkaway.db.DrinkData;
 
 
@@ -25,16 +22,17 @@ public class DrinkDataTest {
 
     @Before
     public void setUp() throws Exception {
-
+        try {
+            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
+            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
+            dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @After
     public void tearDown() throws Exception {
-    	
-    }
-    
-    @Test
-    public void testConstructor() {
     	
     }
     
@@ -56,12 +54,6 @@ public class DrinkDataTest {
     @Test
     public void testAddRating() {
     	
-    }
-    
-    @Test
-    public void testConstructor2() {
-    	DrinkData d = DrinkData.getDrinkData();
-    	assertTrue(true);
     }
     
     @Test
