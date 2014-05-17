@@ -1,6 +1,6 @@
 package modelTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,8 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.onedrinkaway.common.Drink;
-import com.onedrinkaway.model.*;
+import com.onedrinkaway.model.Drink;
 import com.onedrinkaway.model.machinelearning.KNearestNeighborModel;
 
 public class TestMLModel {

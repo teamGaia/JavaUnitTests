@@ -1,16 +1,12 @@
 package dbTest;
 
-import static org.junit.Assert.*;
-
 import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.onedrinkaway.common.Drink;
-import com.onedrinkaway.db.*;
+import com.onedrinkaway.model.Drink;
 
 public class DrinkDbTest {
 
