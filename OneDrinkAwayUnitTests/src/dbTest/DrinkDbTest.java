@@ -14,7 +14,6 @@ import com.onedrinkaway.db.*;
 
 public class DrinkDbTest {
 
-	DrinkDb db = new DrinkDb();
 	private Drink drink;
 
     @Before
