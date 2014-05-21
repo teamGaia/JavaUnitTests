@@ -2,6 +2,9 @@ package modelTest;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -10,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.onedrinkaway.db.DrinkData;
 import com.onedrinkaway.db.DrinkDb;
 import com.onedrinkaway.model.Drink;
 import com.onedrinkaway.model.DrinkInfo;
@@ -20,6 +24,15 @@ public class TestDrinkModel {
 	private static Drink testDrink;
     @Before
     public void setUp() throws Exception {
+     // we aren't in android, so DrinkDb needs a little help getting ready:
+        try {
+            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
+            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
+            DrinkData dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+            DrinkDb.setDrinkData(dd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     	testDrink = new Drink("testDrink", 1024, 4.5, new int[10], new ArrayList<String>(), "testGlass");
     }
 
@@ -141,8 +154,6 @@ public class TestDrinkModel {
 	    	DrinkInfo di = DrinkModel.getDrinkInfo(d);
 	    	assertTrue(di.equals(DrinkDb.getDrinkInfo(d)));
     	}
-    	
-    	assertTrue(DrinkModel.getDrinkInfo(testDrink) == null);
     }
     
     /**

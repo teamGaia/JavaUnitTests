@@ -3,17 +3,36 @@ package modelTest;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import com.onedrinkaway.db.DrinkData;
+import com.onedrinkaway.db.DrinkDb;
 import com.onedrinkaway.model.Drink;
 import com.onedrinkaway.model.machinelearning.KNearestNeighborModel;
 
 public class TestMLModel {
+    
+    @Before
+    public void setUp() throws Exception {
+     // we aren't in android, so DrinkDb needs a little help getting ready:
+        try {
+            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
+            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
+            DrinkData dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+            DrinkDb.setDrinkData(dd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Test(timeout=3000)
 	public void testRunningTime() throws IOException {
