@@ -13,12 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.onedrinkaway.db.DrinkData;
-import com.onedrinkaway.db.DrinkDb;
-import com.onedrinkaway.model.Drink;
-import com.onedrinkaway.model.DrinkInfo;
-import com.onedrinkaway.model.DrinkModel;
-import com.onedrinkaway.model.Query;
+import com.onedrinkaway.db.*;
+import com.onedrinkaway.model.*;
 
 public class TestDrinkModel {
 	private static Drink testDrink;
@@ -97,6 +93,45 @@ public class TestDrinkModel {
     }
     
     @Test
+    public void testSearchFordrinksByName(){
+    	Random r = new Random();
+    	String[] drinkNames = DrinkModel.getDrinkNames();
+    	for(String name : drinkNames){
+	    	int start = r.nextInt(name.length() - 1);
+			int end = start + r.nextInt(name.length() - start - 1); 
+			name = name.substring(start, end);
+			Query q = new Query();
+			q.setName(name);
+			if(DrinkModel.searchForDrinks(q)){
+				Drink[] arr = DrinkModel.getResults();
+				for(Drink d : arr){
+					assertTrue(d.name.contains(name));
+				}
+			}
+    	}
+    }
+    
+    @Test
+    public void testSearchForDrinksByFlavor(){
+    	Random r = new Random();
+    	for(String flavor : Flavor.flavorsArr){
+    		Query q = new Query();
+    		int value = r.nextInt(5) + 1;
+    		q.add(new Flavor(flavor, value));
+    		if(DrinkModel.searchForDrinks(q)){
+    			Drink[] arr = DrinkModel.getResults();
+    			for(Drink d : arr){
+    				int drinkflavorValue = d.attributes[Arrays.asList(Flavor.flavorsArr)
+    				                                    	  .indexOf(flavor)];
+    				assertTrue(drinkflavorValue >= value  - 1 && 
+    						   drinkflavorValue <= value  + 1);
+    			}
+    		}
+    		
+    	}
+    }
+    
+    @Test
     public void testGetDrink(){
     	String[] drinkNames = DrinkModel.getDrinkNames();
     	for(String name : drinkNames){
@@ -167,7 +202,7 @@ public class TestDrinkModel {
     	Arrays.sort(arr); 
     	boolean flag = true;
     	for(int i = 0; i < arr.length; i++){
-    		if(arr[i] != arr2[i]){
+    		if(!arr[i].equals(arr2[i])){
     			flag = false;
     		}
     	}
@@ -185,7 +220,7 @@ public class TestDrinkModel {
     	Arrays.sort(arr); 
     	boolean flag = true;
     	for(int i = 0; i < arr.length; i++){
-    		if(arr[i].equals(arr2[i])){
+    		if(!arr[i].equals(arr2[i])){
     			flag = false;
     		}
     	}
