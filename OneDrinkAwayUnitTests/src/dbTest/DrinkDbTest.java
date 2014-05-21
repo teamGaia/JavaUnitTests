@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 
@@ -33,8 +32,7 @@ public class DrinkDbTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    	int[] attr = {1, 2, 3};
-    	drink = new Drink("aaa", 111111, 0.9, attr, new LinkedList<String>(), "aaa");
+    	drink = DrinkDb.getAllDrinks().iterator().next();
     }
 
     @After
@@ -48,6 +46,20 @@ public class DrinkDbTest {
     	Drink first = arr.iterator().next();
     	Drink test = DrinkDb.getDrink(first.name);
     	assertTrue(first.equals(test));
+    }
+    
+    @Test
+    public void testRateOneDrink() {
+        DrinkDb.addRating(drink, 2);
+        assertTrue(drink.getUserRating() == 2);
+        assertTrue(drink.getRating() == 2);
+        Drink dcopy = DrinkDb.getDrink(drink.name);
+        assertTrue(dcopy.getUserRating() == 2);
+        assertTrue(dcopy.getRating() == 2);
+        Set<Drink> ratedDrinks = DrinkDb.getRatedDrinks();
+        assertTrue(ratedDrinks.size() == 1);
+        assertTrue(ratedDrinks.contains(drink));
+        assertTrue(ratedDrinks.contains(dcopy));
     }
 
     @Test
@@ -108,7 +120,7 @@ public class DrinkDbTest {
     	for(Drink d : favs){
     		DrinkDb.removeFavorite(d);
     	}
-    	assertTrue(DrinkDb.getFavorites() == null);
+    	assertTrue(DrinkDb.getFavorites().size() == 0);
     }
     
     private Drink[] getXRandomDrinks(int x, Set<Drink> drinks){ 
@@ -123,6 +135,6 @@ public class DrinkDbTest {
     			i--;
     		}
     	}
-    	return (Drink[]) ret.toArray(new Drink[drinks.size()]);
+    	return (Drink[]) ret.toArray(new Drink[x]);
     }
 }
