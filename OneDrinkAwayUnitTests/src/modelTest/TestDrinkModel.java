@@ -186,12 +186,24 @@ public class TestDrinkModel {
     	assertTrue(DrinkModel.getFavorites().length == 1);
     	assertTrue(DrinkModel.getFavorites()[0].equals(testDrink));
     	DrinkModel.removeFavorite(testDrink);
+    	
+    	DrinkModel.addFavorite(testDrink);
+    	DrinkModel.addFavorite(testDrink);
+    	assertTrue(DrinkModel.getFavorites().length == 1);
+    	DrinkModel.removeFavorite(testDrink);
     }
     
     @Test
     public void testRemoveFavorite(){
     	DrinkModel.addFavorite(testDrink);
-    	assertTrue(DrinkModel.getFavorites().length == 1);
+    	DrinkModel.removeFavorite(testDrink);
+    	assertTrue(DrinkModel.getFavorites().length == 0);
+    	
+    	DrinkModel.removeFavorite(testDrink);
+    	assertTrue(DrinkModel.getFavorites().length == 0);
+    	
+    	DrinkModel.addFavorite(testDrink);
+    	DrinkModel.removeFavorite(testDrink);
     	DrinkModel.removeFavorite(testDrink);
     	assertTrue(DrinkModel.getFavorites().length == 0);
     }
