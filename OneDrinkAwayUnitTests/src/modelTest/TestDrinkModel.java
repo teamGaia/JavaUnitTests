@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import org.junit.After;
@@ -61,7 +62,22 @@ public class TestDrinkModel {
     public void testFindTrySomethingNew(){
     	DrinkModel.findTrySomethingNewDrinks();
     	Drink[] arr = DrinkModel.getResults();
-    	assertTrue(isDrinkArraySorted(arr));
+    	for(int i = 0; i < 4; i++){
+    		assertTrue(arr[0].compareTo(arr[i + 1]) <= 0);
+    	}
+    	assertTrue(arr.length == 5);
+    	Drink[] allDrinks = DrinkModel.getAllDrinks();
+    	Random r = new Random();
+    	for(int i = 0; i < allDrinks.length - 3; i++){
+    		allDrinks[i].addUserRating(r.nextInt(5) + 1);
+    	}
+    	DrinkModel.findTrySomethingNewDrinks();
+    	arr = DrinkModel.getResults();
+    	assertTrue(arr.length == 3);
+    	List<Drink> allDrinkList = Arrays.asList(arr);
+    	for(int i = allDrinks.length - 3; i < allDrinks.length; i++){
+    		assertTrue(allDrinkList.contains(allDrinks[i]));
+    	}
     }
     
     @Test
@@ -170,12 +186,24 @@ public class TestDrinkModel {
     	assertTrue(DrinkModel.getFavorites().length == 1);
     	assertTrue(DrinkModel.getFavorites()[0].equals(testDrink));
     	DrinkModel.removeFavorite(testDrink);
+    	
+    	DrinkModel.addFavorite(testDrink);
+    	DrinkModel.addFavorite(testDrink);
+    	assertTrue(DrinkModel.getFavorites().length == 1);
+    	DrinkModel.removeFavorite(testDrink);
     }
     
     @Test
     public void testRemoveFavorite(){
     	DrinkModel.addFavorite(testDrink);
-    	assertTrue(DrinkModel.getFavorites().length == 1);
+    	DrinkModel.removeFavorite(testDrink);
+    	assertTrue(DrinkModel.getFavorites().length == 0);
+    	
+    	DrinkModel.removeFavorite(testDrink);
+    	assertTrue(DrinkModel.getFavorites().length == 0);
+    	
+    	DrinkModel.addFavorite(testDrink);
+    	DrinkModel.removeFavorite(testDrink);
     	DrinkModel.removeFavorite(testDrink);
     	assertTrue(DrinkModel.getFavorites().length == 0);
     }
