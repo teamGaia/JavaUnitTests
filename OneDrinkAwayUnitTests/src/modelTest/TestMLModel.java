@@ -4,12 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,12 +22,13 @@ public class TestMLModel {
     
     @Before
     public void setUp() throws Exception {
-     // we aren't in android, so DrinkDb needs a little help getting ready:
+        // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
-            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
-            DrinkData dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+            Scanner sc = new Scanner(new File("pwd.txt"));
+            String password = sc.next();
+            DrinkData dd = DrinkData.getDrinkDataDB(password);
             DrinkDb.setDrinkData(dd);
+            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

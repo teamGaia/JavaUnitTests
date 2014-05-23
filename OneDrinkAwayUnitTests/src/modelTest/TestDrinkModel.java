@@ -3,30 +3,35 @@ package modelTest;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.onedrinkaway.db.*;
-import com.onedrinkaway.model.*;
+import com.onedrinkaway.db.DrinkData;
+import com.onedrinkaway.db.DrinkDb;
+import com.onedrinkaway.model.Drink;
+import com.onedrinkaway.model.DrinkInfo;
+import com.onedrinkaway.model.DrinkModel;
+import com.onedrinkaway.model.Flavor;
+import com.onedrinkaway.model.Query;
 
 public class TestDrinkModel {
 	private static Drink testDrink;
     @Before
     public void setUp() throws Exception {
-     // we aren't in android, so DrinkDb needs a little help getting ready:
+        // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
-            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
-            DrinkData dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+            Scanner sc = new Scanner(new File("pwd.txt"));
+            String password = sc.next();
+            DrinkData dd = DrinkData.getDrinkDataDB(password);
             DrinkDb.setDrinkData(dd);
+            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

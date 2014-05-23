@@ -3,10 +3,9 @@ package dbTest;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.junit.After;
@@ -25,10 +24,11 @@ public class DrinkDbTest {
     public void setUp() throws Exception {
         // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            InputStream drinkIs = new FileInputStream(new File("drinks.tsv"));
-            InputStream drinkInfoIs = new FileInputStream(new File("RecipesBeta.txt"));
-            DrinkData dd = DrinkData.getDrinkData(drinkIs, drinkInfoIs);
+            Scanner sc = new Scanner(new File("pwd.txt"));
+            String password = sc.next();
+            DrinkData dd = DrinkData.getDrinkDataDB(password);
             DrinkDb.setDrinkData(dd);
+            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
