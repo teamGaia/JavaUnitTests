@@ -2,10 +2,8 @@ package dbTest;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
 
 import org.junit.After;
@@ -24,11 +22,8 @@ public class DrinkDbTest {
     public void setUp() throws Exception {
         // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            Scanner sc = new Scanner(new File("pwd.txt"));
-            String password = sc.next();
-            DrinkData dd = DrinkData.getDrinkDataDB(password);
+            DrinkData dd = DrinkData.getDrinkDataDB("test");
             DrinkDb.setDrinkData(dd);
-            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

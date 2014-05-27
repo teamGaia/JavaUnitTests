@@ -2,12 +2,9 @@ package modelTest;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,17 +22,14 @@ public class TestDrinkModel {
 	private static Drink testDrink;
     @Before
     public void setUp() throws Exception {
-        // we aren't in android, so DrinkDb needs a little help getting ready:
+     // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            Scanner sc = new Scanner(new File("pwd.txt"));
-            String password = sc.next();
-            DrinkData dd = DrinkData.getDrinkDataDB(password);
+            DrinkData dd = DrinkData.getDrinkDataDB("test");
             DrinkDb.setDrinkData(dd);
-            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    	testDrink = new Drink("testDrink", 1024, 4.5, new int[10], new ArrayList<String>(), "testGlass");
+        testDrink = DrinkDb.getAllDrinks().iterator().next();
     }
 
     @After

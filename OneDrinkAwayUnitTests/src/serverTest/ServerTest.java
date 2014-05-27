@@ -2,7 +2,9 @@ package serverTest;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -14,8 +16,8 @@ import org.junit.Test;
 
 public class ServerTest {
 
-    //String hostUrl = "http://54.200.252.24:8080/OneDrinkAwayServer";
-    String hostUrl = "http://localhost:8089/DrinkDbServer";
+    String hostUrl = "http://54.200.252.24:8080/DrinkDbServer";
+    //String hostUrl = "http://localhost:8089/DrinkDbServer";
     String charset = "UTF-8";
     String userid = "9774d56d682e549c";
     String drinkid = "123";
@@ -23,7 +25,7 @@ public class ServerTest {
 
     @Before
     public void setUp() throws Exception {
-
+        Thread.sleep(250); // server gets angry when we request too fast?
     }
 
     @After
@@ -111,6 +113,10 @@ public class ServerTest {
         connection.setRequestProperty("Accept-Charset", charset);
         InputStream response = connection.getInputStream();
         assertTrue(response != null);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(response, charset));
+        assertTrue(reader !=  null);
+        String data = reader.readLine();
+        assertTrue(data.length() > 0);
         HttpURLConnection hc = (HttpURLConnection) connection;
         assertTrue(hc.getResponseCode() == 200);
     }
@@ -135,6 +141,10 @@ public class ServerTest {
         connection.setRequestProperty("Accept-Charset", charset);
         InputStream response = connection.getInputStream();
         assertTrue(response != null);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(response, charset));
+        assertTrue(reader !=  null);
+        String data = reader.readLine();
+        assertTrue(data.length() > 0);
         HttpURLConnection hc = (HttpURLConnection) connection;
         assertTrue(hc.getResponseCode() == 200);
     }

@@ -3,12 +3,10 @@ package modelTest;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,13 +20,10 @@ public class TestMLModel {
     
     @Before
     public void setUp() throws Exception {
-        // we aren't in android, so DrinkDb needs a little help getting ready:
+     // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            Scanner sc = new Scanner(new File("pwd.txt"));
-            String password = sc.next();
-            DrinkData dd = DrinkData.getDrinkDataDB(password);
+            DrinkData dd = DrinkData.getDrinkDataDB("test");
             DrinkDb.setDrinkData(dd);
-            sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
