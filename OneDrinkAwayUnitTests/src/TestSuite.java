@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import serverTest.ServerTest;
+
 import commonTest.DrinkInfoTest;
 import commonTest.DrinkTest;
 
@@ -16,6 +18,7 @@ import dbTest.DrinkDbTest;
 	DrinkTest.class,
 	DrinkDbTest.class,
 	TestDrinkModel.class, 
-	TestMLModel.class
+	TestMLModel.class,
+	ServerTest.class
 })
 public class TestSuite { }
