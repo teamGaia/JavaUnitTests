@@ -9,6 +9,7 @@ import serverTest.ServerTest;
 
 import commonTest.DrinkInfoTest;
 import commonTest.DrinkTest;
+import commonTest.FlavorTest;
 
 import dbTest.DrinkDbTest;
 
@@ -19,6 +20,7 @@ import dbTest.DrinkDbTest;
 	DrinkDbTest.class,
 	TestDrinkModel.class, 
 	TestMLModel.class,
-	ServerTest.class
+	ServerTest.class,
+	FlavorTest.class
 })
 public class TestSuite { }

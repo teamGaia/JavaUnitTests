@@ -88,7 +88,7 @@ public class FlavorTest {
 		Flavor f2 = new Flavor(sweet2, 5);
 		int hash1 = f1.hashCode();
 		int hash2 = f2.hashCode();
-		assertTrue("The hashcode for two equal flavors should be the same", hash1 != hash2);
+		assertTrue("The hashcode for two equal flavors should be the same", hash1 == hash2);
 	}
 
 }
