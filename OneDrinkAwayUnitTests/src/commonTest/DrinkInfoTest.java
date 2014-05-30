@@ -1,6 +1,7 @@
 package commonTest;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +28,10 @@ public class DrinkInfoTest {
     	di = null;
     }
     
-
+    @Test
+    public void testFields() {
+        testDrinkInfo(di);
+    }
     
     @Test
     public void testIngredientsCannotAdd() {
@@ -60,5 +64,19 @@ public class DrinkInfoTest {
     		canClear = false;
     	}
     	assertFalse(canClear);
+    }
+    
+    /**
+     * Tests all fields on DrinkInfo for completeness
+     */
+    public static void testDrinkInfo(DrinkInfo di) {
+        assertTrue(di != null);
+        assertTrue(di.drinkId > 0);
+        assertTrue(di.garnish.length() > 0);
+        assertTrue(di.ingredients.size() > 0);
+        assertTrue(di.instructions.length() > 0);
+        for (String ingr : di.ingredients) {
+            assertTrue(ingr.length() > 0);
+        }
     }
 }

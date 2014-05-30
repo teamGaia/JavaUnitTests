@@ -3,6 +3,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,20 +19,23 @@ import com.onedrinkaway.model.Drink;
  */
 
 public class DrinkTest {
-	
-    public DrinkTest() {
-    	
-    }
     
     public Drink d;
     @Before
     public void setUp() throws Exception {
-    	d = new Drink("name", 1, 1, new int[1], new ArrayList<String>(), "glass", "image");
+        List<String> categories = new ArrayList<String>();
+        categories.add("cat");
+    	d = new Drink("name", 1, 1, new int[11], categories, "glass", "image");
     }
 
     @After
     public void tearDown() throws Exception {
     	d = null;
+    }
+    
+    @Test
+    public void testDrinkFields() {
+        testDrink(d);
     }
     
     @Test
@@ -66,5 +70,20 @@ public class DrinkTest {
         assertTrue(d.id == 1);
         assertTrue(d.glass.equals("glass"));
         assertTrue(d.getUserRating() == -1);
+    }
+    
+    public static void testDrink(Drink d) {
+        assertTrue(d != null);
+        assertTrue(d.glass.length() > 0);
+        assertTrue(d.id > 0);
+        assertTrue(d.image.length() > 0);
+        assertTrue(d.predictedRating > -2);
+        assertTrue(d.getRating() > 0);
+        assertTrue(d.categories.size() > 0);
+        assertTrue(d.attributes.length == 11);
+        for (int i : d.attributes)
+            assertTrue(i >= 0 && i <= 5);
+        for (String c : d.categories)
+            assertTrue(c.length() > 0);
     }
 }

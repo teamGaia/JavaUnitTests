@@ -3,7 +3,6 @@ package modelTest;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 import org.junit.After;
@@ -24,7 +23,7 @@ public class TestDrinkModel {
     public void setUp() throws Exception {
      // we aren't in android, so DrinkDb needs a little help getting ready:
         try {
-            DrinkData dd = DrinkData.getDrinkDataDB("test");
+            DrinkData dd = DrinkData.getDrinkDataDB("test1");
             DrinkDb.setDrinkData(dd);
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,10 +71,8 @@ public class TestDrinkModel {
     	}
     	DrinkModel.findTrySomethingNewDrinks();
     	arr = DrinkModel.getResults();
-    	assertTrue(arr.length == 3);
-    	List<Drink> allDrinkList = Arrays.asList(arr);
-    	for(int i = allDrinks.length - 3; i < allDrinks.length; i++){
-    		assertTrue(allDrinkList.contains(allDrinks[i]));
+    	for (Drink d : arr) {
+    	    assertTrue(DrinkDb.getAllDrinks().contains(d));
     	}
     }
     
