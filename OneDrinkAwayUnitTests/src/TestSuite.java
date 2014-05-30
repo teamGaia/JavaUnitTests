@@ -1,8 +1,6 @@
-import static org.junit.Assert.fail;
 import modelTest.TestDrinkModel;
 import modelTest.TestMLModel;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -20,11 +18,4 @@ import dbTest.DrinkDbTest;
 	TestDrinkModel.class, 
 	TestMLModel.class
 })
-public class TestSuite {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-}
+public class TestSuite { }
