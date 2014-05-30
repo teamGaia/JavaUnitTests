@@ -144,7 +144,7 @@ public class ServerTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(response, charset));
         assertTrue(reader !=  null);
         String data = reader.readLine();
-        assertTrue(data.length() > 0);
+        assertTrue(data.length() > 2); // failed response gives "{}"
         HttpURLConnection hc = (HttpURLConnection) connection;
         assertTrue(hc.getResponseCode() == 200);
     }
