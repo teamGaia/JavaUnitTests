@@ -26,7 +26,7 @@ public class DrinkTest {
     public Drink d;
     @Before
     public void setUp() throws Exception {
-    	d = new Drink("name", 1, 1, new int[1], new ArrayList<String>(), "glass");
+    	d = new Drink("name", 1, 1, new int[1], new ArrayList<String>(), "glass", "image");
     }
 
     @After
