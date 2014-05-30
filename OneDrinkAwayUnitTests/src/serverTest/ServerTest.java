@@ -148,22 +148,4 @@ public class ServerTest {
         HttpURLConnection hc = (HttpURLConnection) connection;
         assertTrue(hc.getResponseCode() == 200);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

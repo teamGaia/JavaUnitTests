@@ -81,7 +81,7 @@ public class TestMLModel {
 		   for(int i = 1; i < info.length; i++) {
 				attributes[i-1] = Integer.parseInt(info[i]);
 		   }
-		   return new Drink("aaa", 1, Double.parseDouble(info[0]), attributes, new LinkedList<String>(), "aaa");
+		   return new Drink("aaa", 1, Double.parseDouble(info[0]), attributes, new LinkedList<String>(), "aaa", "aaa");
 	}
 
 }

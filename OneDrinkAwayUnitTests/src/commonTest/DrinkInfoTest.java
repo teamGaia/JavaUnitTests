@@ -19,7 +19,7 @@ public class DrinkInfoTest {
     public void setUp() throws Exception {
     	List<String> l = new LinkedList<String>();
     	l.add("a");
-    	di = new DrinkInfo(l, "description", "garnish", "instructions", "citation", 1);
+    	di = new DrinkInfo(l, "garnish", "instructions", 1);
     }
 
     @After

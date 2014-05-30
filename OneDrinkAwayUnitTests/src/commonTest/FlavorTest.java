@@ -57,7 +57,7 @@ public class FlavorTest {
 	public void testEqualsTwoDifferentObjects() {
 		String sweet = "Sweet";
 		Flavor f1 = new Flavor(sweet, 5);
-		Drink d = new Drink("name", 1, 1, new int[1], new ArrayList<String>(), "glass");
+		Drink d = new Drink("name", 1, 1, new int[1], new ArrayList<String>(), "glass", "image");
 		assertFalse("A Flavor should not equal a drink object", f1.equals(d));
 		assertFalse("A drink object should not equal a Flavor", d.equals(f1));
 	}
