@@ -63,7 +63,7 @@ public class TestDrinkModel {
     	for(int i = 0; i < 4; i++){
     		assertTrue(arr[0].compareTo(arr[i + 1]) <= 0);
     	}
-    	assertTrue(arr.length == 5);
+    	assertTrue(arr.length == 20);
     	Drink[] allDrinks = DrinkModel.getAllDrinks();
     	Random r = new Random();
     	for(int i = 0; i < allDrinks.length - 3; i++){
